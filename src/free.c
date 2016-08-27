@@ -6,31 +6,35 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 13:31:08 by tanguy            #+#    #+#             */
-/*   Updated: 2016/08/27 10:15:13 by tanguy           ###   ########.fr       */
+/*   Updated: 2016/08/27 16:29:11 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
+
+static int free_small(void *ptr, t_link *node)
+{
+	while (node->next != NULL)
+	{
+		if (ptr == node->next + 1)
+		{
+			node->next = node->next->next;
+			return 1;
+		}
+		node = node->next;
+	}
+	return 0;
+}
 
 void	free(void *ptr)
 {
 	t_link *node;
 	t_link *tmp;
 
-	node = alloc_data()->tny;
-	while (node->next != NULL)
-	{
-		if (ptr == node->next + 1)
-			return (void)(node->next = node->next->next);
-		node = node->next;
-	}
-	node = alloc_data()->med;
-	while (node->next != NULL)
-	{
-		if (ptr == node->next + 1)
-			return (void)(node->next = node->next->next);
-		node = node->next;
-	}
+	if (free_small(ptr, alloc_data()->tny) == 1)
+		return;
+	if (free_small(ptr, alloc_data()->med) == 1)
+		return;
 	node = alloc_data()->lrg;
 	while (node->next != NULL)
 	{
