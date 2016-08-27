@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 12:39:44 by tanguy            #+#    #+#             */
-/*   Updated: 2016/08/27 16:14:22 by tanguy           ###   ########.fr       */
+/*   Updated: 2016/08/27 22:00:49 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ void print(char *s)
 	write(1, s, strlen(s));
 }
 
-int main()
-{
-	malloc(25);
-	malloc(1024);
-	malloc(1024 * 32);
-	malloc(1024 * 1024);
-	malloc(1024 * 1024 * 16);
-	malloc(1024 * 1024 * 128);
-	show_alloc_mem();
-	return 0;
-}
+// int main()
+// {
+// 	malloc(25);
+// 	malloc(1024);
+// 	malloc(1024 * 32);
+// 	malloc(1024 * 1024);
+// 	malloc(1024 * 1024 * 16);
+// 	malloc(1024 * 1024 * 128);
+// 	show_alloc_mem();
+// 	return 0;
+// }
 
 // int	main()
 // {
@@ -63,27 +63,39 @@ int main()
 // 	return 0;
 // }
 
-// int	main()
-// {
-// 	int  i;
-// 	char *addr;
+int	main()
+{
+	int  i;
+	char *addr;
+	char *tmp;
 
-// 	(void)addr;
-// 	i = 0;
-// 	while (i < 1024)
-// 	{
-// 		addr = (char*)malloc(1024);
-// 		if (addr == NULL)
-// 		{
-// 			ft_putstr("NULL returned!\n");
-// 			return 0;
-// 		}
-// 		addr[0] = 42;
-// 		free(addr);
-// 		i++;
-// 	}
-// 	return 0;
-// }
+	(void)addr;
+	i = 0;
+	while (i < 1024)
+	{
+		addr = (char*)malloc(1024);
+		addr = realloc(addr, 64);
+		if (addr == NULL)
+		{
+			ft_putstr("NULL returned!\n");
+			return 0;
+		}
+		addr[0] = 42;
+		free(addr);
+		i++;
+	}
+	addr = (char*)malloc(1024);
+	strcpy(addr, "Bonjour\n");
+	tmp = (char*)malloc(128);
+	addr = realloc(addr, 64);
+	free(tmp);
+	print(addr);
+	free(addr);
+	free(NULL);
+	if (realloc(NULL, 0) == NULL)
+		print("Bonjour\n");
+	return 0;
+}
 
 // int	main()
 // {

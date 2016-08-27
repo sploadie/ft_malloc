@@ -1,2 +1,3 @@
 #!/bin/bash
-DYLD_LIBRARY_PATH=.. ./test_malloc
+make re
+/usr/bin/time -l bash -c "DYLD_LIBRARY_PATH=.. ./test_malloc"

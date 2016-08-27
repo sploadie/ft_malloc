@@ -6,18 +6,18 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 13:31:08 by tanguy            #+#    #+#             */
-/*   Updated: 2016/08/27 16:12:32 by tanguy           ###   ########.fr       */
+/*   Updated: 2016/08/27 21:34:05 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
-static void print_hex(long num, int depth)
+static void	print_hex(long num, int depth)
 {
 	if (depth == 0)
 	{
 		write(1, "0x", 2);
-		return;
+		return ;
 	}
 	print_hex(num >> 4, depth - 1);
 	num -= (num >> 4) << 4;
@@ -28,7 +28,7 @@ static void print_hex(long num, int depth)
 	write(1, &num, 1);
 }
 
-static void print_title(char *str, long addr)
+static void	print_title(char *str, long addr)
 {
 	ft_putstr(str);
 	ft_putstr(" : ");
@@ -36,9 +36,9 @@ static void print_title(char *str, long addr)
 	write(1, "\n", 1);
 }
 
-static long print_alloc(t_link *node)
+static long	print_alloc(t_link *node)
 {
-	long size;
+	long	size;
 
 	print_hex((long)(node + 1), 9);
 	ft_putstr(" - ");
@@ -47,12 +47,12 @@ static long print_alloc(t_link *node)
 	size = (char*)node->end - (char*)node - sizeof(t_link);
 	ft_putnbr(size);
 	ft_putstr(" octets\n");
-	return size;
+	return (size);
 }
 
-static long print_malloc(t_link *node)
+static long	print_malloc(t_link *node)
 {
-	long total;
+	long	total;
 
 	total = 0;
 	while (node->next != NULL)
@@ -60,13 +60,13 @@ static long print_malloc(t_link *node)
 		node = node->next;
 		total += print_alloc(node);
 	}
-	return total;
+	return (total);
 }
 
-void	show_alloc_mem()
+void		show_alloc_mem(void)
 {
-	t_link *node;
-	long total;
+	t_link	*node;
+	long	total;
 
 	total = 0;
 	node = alloc_data()->tny;
@@ -81,5 +81,4 @@ void	show_alloc_mem()
 	ft_putstr("Total : ");
 	ft_putnbr(total);
 	ft_putstr(" octets\n");
-
 }

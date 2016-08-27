@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 15:35:45 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/08/27 10:11:33 by tanguy           ###   ########.fr       */
+/*   Updated: 2016/08/27 20:26:16 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_data {
 	size_t med_max;
 	t_link *lrg;
 } t_data;
+
+extern t_data *saved;
 
 void	free(void *ptr);
 void	*malloc(size_t size);
