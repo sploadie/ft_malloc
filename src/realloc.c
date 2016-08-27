@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 13:31:08 by tanguy            #+#    #+#             */
-/*   Updated: 2016/08/27 10:27:27 by tanguy           ###   ########.fr       */
+/*   Updated: 2016/08/27 11:06:38 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	*realloc(void *ptr, size_t size)
 	node = realloc_small(alloc_data()->med, ptr, size, alloc_data()->med_max);
 	if (node != NULL || errno == ENOMEM)
 		return node;
-	//HANDLE LARGE
 	node = alloc_data()->lrg;
 	while (node->next != NULL)
 	{
@@ -75,5 +74,5 @@ void	*realloc(void *ptr, size_t size)
 		}
 		node = node->next;
 	}
-	return node;
+	return NULL;
 }
