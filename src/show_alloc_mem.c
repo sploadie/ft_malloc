@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 13:31:08 by tanguy            #+#    #+#             */
-/*   Updated: 2016/08/26 20:55:40 by tanguy           ###   ########.fr       */
+/*   Updated: 2016/08/27 16:12:32 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void print_title(char *str, long addr)
 {
 	ft_putstr(str);
 	ft_putstr(" : ");
-	print_hex(addr, 5);
+	print_hex(addr, 9);
 	write(1, "\n", 1);
 }
 
@@ -40,13 +40,13 @@ static long print_alloc(t_link *node)
 {
 	long size;
 
-	print_hex((long)(node + sizeof(t_link)), 5);
+	print_hex((long)(node + 1), 9);
 	ft_putstr(" - ");
-	print_hex((long)(node->end), 5);
+	print_hex((long)(node->end), 9);
 	ft_putstr(" : ");
-	size = node->end - node + sizeof(t_link);
+	size = (char*)node->end - (char*)node - sizeof(t_link);
 	ft_putnbr(size);
-	ft_putstr("octets\n");
+	ft_putstr(" octets\n");
 	return size;
 }
 
@@ -80,6 +80,6 @@ void	show_alloc_mem()
 	total += print_malloc(node);
 	ft_putstr("Total : ");
 	ft_putnbr(total);
-	ft_putstr("octets\n");
+	ft_putstr(" octets\n");
 
 }

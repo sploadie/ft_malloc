@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 12:39:44 by tanguy            #+#    #+#             */
-/*   Updated: 2016/08/27 11:03:42 by tanguy           ###   ########.fr       */
+/*   Updated: 2016/08/27 16:14:22 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,31 @@ void print(char *s)
 	write(1, s, strlen(s));
 }
 
-int	main()
+int main()
 {
-	char *addr;
-
-	addr = malloc(16);
-	free(NULL);
-	free((void*)addr + 5);
-	if (realloc((void*) + 5, 10) == NULL)
-	{
-		print("Bonjour\n");
-	}
+	malloc(25);
+	malloc(1024);
+	malloc(1024 * 32);
+	malloc(1024 * 1024);
+	malloc(1024 * 1024 * 16);
+	malloc(1024 * 1024 * 128);
+	show_alloc_mem();
 	return 0;
 }
+
+// int	main()
+// {
+// 	char *addr;
+
+// 	addr = malloc(16);
+// 	free(NULL);
+// 	free((void*)addr + 5);
+// 	if (realloc((void*) + 5, 10) == NULL)
+// 	{
+// 		print("Bonjour\n");
+// 	}
+// 	return 0;
+// }
 
 // int	main()
 // {
