@@ -1,3 +1,4 @@
 #!/bin/bash
 make re
-/usr/bin/time -l bash -c "DYLD_LIBRARY_PATH=.. ./test_malloc"
+export DYLD_LIBRARY_PATH=..
+/usr/bin/time -l ./test_malloc

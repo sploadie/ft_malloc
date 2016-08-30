@@ -67,14 +67,12 @@ int	main()
 {
 	int  i;
 	char *addr;
-	char *tmp;
 
 	(void)addr;
 	i = 0;
 	while (i < 1024)
 	{
 		addr = (char*)malloc(1024);
-		addr = realloc(addr, 64);
 		if (addr == NULL)
 		{
 			ft_putstr("NULL returned!\n");
@@ -84,18 +82,42 @@ int	main()
 		free(addr);
 		i++;
 	}
-	addr = (char*)malloc(1024);
-	strcpy(addr, "Bonjour\n");
-	tmp = (char*)malloc(128);
-	addr = realloc(addr, 64);
-	free(tmp);
-	print(addr);
-	free(addr);
-	free(NULL);
-	if (realloc(NULL, 0) == NULL)
-		print("Bonjour\n");
 	return 0;
 }
+
+// int	main()
+// {
+// 	int  i;
+// 	char *addr;
+// 	char *tmp;
+
+// 	(void)addr;
+// 	i = 0;
+// 	while (i < 1024)
+// 	{
+// 		addr = (char*)malloc(1024);
+// 		addr = realloc(addr, 64);
+// 		if (addr == NULL)
+// 		{
+// 			ft_putstr("NULL returned!\n");
+// 			return 0;
+// 		}
+// 		addr[0] = 42;
+// 		free(addr);
+// 		i++;
+// 	}
+// 	addr = (char*)malloc(1024);
+// 	strcpy(addr, "Bonjour\n");
+// 	tmp = (char*)malloc(128);
+// 	addr = realloc(addr, 64);
+// 	free(tmp);
+// 	print(addr);
+// 	free(addr);
+// 	free(NULL);
+// 	if (realloc(NULL, 0) == NULL)
+// 		print("Bonjour\n");
+// 	return 0;
+// }
 
 // int	main()
 // {
